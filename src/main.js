@@ -8,7 +8,7 @@ const logger = require('./utils/logger')
 const app = express()
 const port = process.env.HTTP_PORT
 
-const { controllerAdd, controllerGet } = require("./controler/CRUDControler");
+const { controllerAdd, controllerGet, controllerDel, controllerMaj, controllerId } = require("./controler/CRUDControler");
 // Middleware
 app.use(morgan('combined'))
 app.use(cors())
@@ -25,16 +25,18 @@ app.get('/cards', function (req, res) {
 });
 
 
-app.get('/cardsId', function (req, res) {
-  res.send('bienvenu pour les Id');
+app.delete('/cardsDel', function (req, res) {
+  controllerDel(req, res);
 });
 
-app.delete('/cardsDel', function (req, res) {
-  res.send('bienvenu pour les suppresions');
+
+app.get('/cardsId', function (req, res) {
+  controllerId(req, res);
 });
+
 
 app.patch('/cardsUptade', function (req, res) {
-  res.send('bienvenu pour les maj');
+  controllerMaj(req, res)
 });
 
 //other
