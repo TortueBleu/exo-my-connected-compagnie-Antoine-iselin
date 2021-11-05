@@ -1,6 +1,7 @@
+const { response } = require("express");
 const request = require("supertest");
 
-describe("test a empty table", () => {
+describe("test route", () => {
 
     var server;
     beforeEach(() => {
@@ -10,14 +11,7 @@ describe("test a empty table", () => {
         server.close();
     });
 
-    // test("it should test the /cards route", () => {
-    //     return request(server)
-    //         .post("/cards")
-    //         .then(response => {
-    //             expect(response.statusCode).toBe(200)
-    //             expect(response.body).toEqual([{}])
-    //         });
-    // });
+
     test("it should test the /cards route", () => {
         return request(server)
             .get("/cards")
@@ -25,4 +19,54 @@ describe("test a empty table", () => {
                 expect(response.body).toEqual([])
             });
     });
+
+    // test("it should delete a card", () => {
+
+
+    //     return request(server)
+    //         .post("/cards")
+    //         .send({
+    //             "name": "story56",
+    //             "dateFin": "20/11/2021",
+    //             "description": "test"
+    //         })
+    //         .expect(200)
+    //         .then(() => {
+    //             request(server)
+    //                 .delete("/cardsDel?id=0")
+    //                 .then(response => {
+    //                     expect(response.body).toEqual({
+    //                         carteId: 0,
+    //                         name: "story56",
+    //                         dateFin: "20/11/2021",
+    //                         description: "test"
+    //                     });
+    //                 });
+    //         });
+    // });
+
+    test("it should add a card", () => {
+        return request(server)
+            .post("/cards")
+            .send({
+                "name": "story56",
+                "dateFin": "20/11/2021",
+                "description": "test"
+            })
+            .expect(200, {
+                carteId: 0,
+                name: "story56",
+                dateFin: "20/11/2021",
+                description: "test"
+            });
+    });
+
+    // test("it should update a card", () => {
+    //     return request(server)
+    //         .patch("/cardsUptade")
+    //         .then(response => {
+    //             expect(response.body).toEqual([])
+    //         })
+    // })
+
 });

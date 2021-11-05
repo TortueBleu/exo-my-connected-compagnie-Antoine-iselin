@@ -1,12 +1,52 @@
+const { Card } = require("../utils/cards");
+
 const cartes = [];
-//let id = 0;
+let id = 0;
 const add = (carte) => {
-    cartes.push(carte);
-    return cartes;
+    const card = new Card({ carteId: id, ...carte });
+    id++;
+    cartes.push(card);
+    return card;
 };
+const clearTable = () => {
+    cartes.splice(0, cartes.length);
+}
 const getCards = () => {
     return cartes;
 }
+const delCard = (id) => {
+    const index = cartes.findIndex((carte) => {
+        console.log(carte);
+        if (carte.carteId == id) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    });
+    if (index == -1) {
+        return undefined;
+    }
+    const carte = cartes.splice(index, 1);
+    console.log(id);
 
+    return carte[0];
+}
 
-module.exports = { add, getCards };
+const updateCard = (carte) => {
+    const upCard = new Card({ ...carte })
+    delCard(carte);
+    cartes.push(upCard);
+    return upCard;
+}
+
+const cardId = (carteId) => {
+    let crt;
+    cartes.forEach((carte) => {
+        if (carte.carteId == carteId) {
+            crt = carte
+        }
+    });
+    return crt;
+}
+module.exports = { add, getCards, delCard, updateCard, cardId, clearTable };
