@@ -9,6 +9,7 @@ const app = express()
 const port = process.env.HTTP_PORT
 
 const { controllerAdd, controllerGet, controllerDel, controllerMaj, controllerId } = require("./controler/CRUDControler");
+const { controllerAddList, controllerGetList, controllerDelList, controllerMajList, controllerListId } = require("./controler/LISTController");
 // Middleware
 app.use(morgan('combined'))
 app.use(cors())
@@ -19,26 +20,39 @@ app.use(bodyParser.json())
 app.post('/cards', function (req, res) {
   controllerAdd(req, res);
 });
-
 app.get('/cards', function (req, res) {
   controllerGet(req, res);
 });
-
-
-app.delete('/cardsDel', function (req, res) {
+app.delete('/cards', function (req, res) {
   controllerDel(req, res);
 });
-
-
 app.get('/cardsId', function (req, res) {
   controllerId(req, res);
 });
-
-
-app.patch('/cardsUptade', function (req, res) {
+app.patch('/cards', function (req, res) {
   controllerMaj(req, res)
 });
 
+//LISTE
+
+app.post('/list', function (req, res) {
+  controllerAddList(req, res);
+});
+
+app.get('/list', function (req, res) {
+  controllerGetList(req, res);
+});
+app.get('/listId', function (req, res) {
+  controllerListId(req, res);
+});
+
+app.delete('/list', function (req, res) {
+  controllerDelList(req, res);
+});
+
+app.patch('/list', function (req, res) {
+  controllerMajList(req, res);
+})
 //other
 
 const server = app.listen(port, () => {
