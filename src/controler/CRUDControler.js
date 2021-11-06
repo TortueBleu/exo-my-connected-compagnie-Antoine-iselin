@@ -16,7 +16,8 @@ const controllerDel = (req, res) => {
     res.send(result);
 }
 const controllerMaj = (req, res) => {
-    const result = updateCard(req.body);
+    const iD = req.query.id;
+    const result = updateCard(iD, req.body);
     res.json(result);
 }
 const controllerId = (req, res) => {

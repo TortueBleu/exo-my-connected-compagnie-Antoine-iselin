@@ -60,13 +60,4 @@ describe("test route", () => {
                 description: "test"
             });
     });
-
-    // test("it should update a card", () => {
-    //     return request(server)
-    //         .patch("/cardsUptade")
-    //         .then(response => {
-    //             expect(response.body).toEqual([])
-    //         })
-    // })
-
 });

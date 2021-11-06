@@ -16,7 +16,6 @@ const getCards = () => {
 }
 const delCard = (id) => {
     const index = cartes.findIndex((carte) => {
-        console.log(carte);
         if (carte.carteId == id) {
             return true;
         }
@@ -28,13 +27,12 @@ const delCard = (id) => {
         return undefined;
     }
     const carte = cartes.splice(index, 1);
-    console.log(id);
 
     return carte[0];
 }
 
 const updateCard = (carte) => {
-    const upCard = new Card({ ...carte })
+    const upCard = new Card({ carteId: carte, ...carte })
     delCard(carte);
     cartes.push(upCard);
     return upCard;
