@@ -2,7 +2,7 @@ const { liste } = require("../utils/list");
 const tableauListes = [];
 let id = 0;
 const addListe = (list) => {
-    const lists = new liste({ listId: id, ...list });
+    const lists = new liste({ listId: id, tableau: [], ...list });
     id++;
     tableauListes.push(lists);
     return lists;
@@ -10,7 +10,7 @@ const addListe = (list) => {
 const getListe = () => {
     return tableauListes;
 }
-const getListId = (listId) => {
+const getListById = (listId) => {
     let lst;
     tableauListes.forEach((liste) => {
         if (liste.listId == listId) {
@@ -22,7 +22,6 @@ const getListId = (listId) => {
 
 
 const delList = (id) => {
-    console.log(id)
     const index = tableauListes.findIndex((lists) => {
         if (lists.listId == id) {
             return true;
@@ -31,7 +30,6 @@ const delList = (id) => {
             return false;
         }
     });
-    console.log(index)
     if (index == -1) {
         return undefined;
     }
@@ -51,4 +49,4 @@ const clearListe = () => {
     tableauListes.splice(0, tableauListes.length);
 }
 
-module.exports = { addListe, getListe, delList, majList, getListId, clearListe };
+module.exports = { addListe, getListe, delList, majList, getListById, clearListe };

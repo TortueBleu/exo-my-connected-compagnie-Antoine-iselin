@@ -1,4 +1,4 @@
-const { addListe, getListe, delList, majList, getListId, clearListe } = require('../CRUDLISt')
+const { addListe, getListe, delList, majList, getListById, clearListe } = require('../CRUDLISt')
 
 describe("test CRUD", () => {
     beforeEach(() => {
@@ -25,7 +25,7 @@ describe("test CRUD", () => {
         const liste = getListe();
         const input = {
             name: "list",
-            tableau: "carte",
+            tableau: [],
             dateCrea: "06/11/21"
         };
         const newList = addListe(input);
@@ -37,7 +37,7 @@ describe("test CRUD", () => {
     test("it should change a list who already exist", () => {
         const input = {
             name: "list",
-            tableau: "carte",
+            tableau: [],
             dateCrea: "06/11/21"
         };
         let newList = addListe(input);
@@ -47,14 +47,14 @@ describe("test CRUD", () => {
     });
 
 
-    test("it should repsonse a list with id ", () => {
+    test("it should response a list with id ", () => {
         const input = {
             name: "list",
-            tableau: "carte",
+            tableau: [],
             dateCrea: "06/11/21"
         };
         const newList = addListe(input);
-        const verif = getListId(newList.listId);
+        const verif = getListById(newList.listId);
         expect(verif).toBe(newList);
     });
 

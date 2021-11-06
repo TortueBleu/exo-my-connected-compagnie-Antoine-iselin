@@ -1,4 +1,5 @@
 const { Card } = require("../utils/cards");
+const { getListById } = require("./CRUDLISt")
 
 const cartes = [];
 let id = 0;
@@ -8,6 +9,20 @@ const add = (carte) => {
     cartes.push(card);
     return card;
 };
+
+
+const addToList = (carte, listId) => {
+    const liste = getListById(listId);
+    if (liste == undefined) {
+        return undefined;
+    }
+    const card = new Card({ carteId: id, ...carte });
+    id++;
+    liste.tableau.push(card);
+    cartes.push(card);
+    return card;
+};
+
 const clearTable = () => {
     cartes.splice(0, cartes.length);
 }
@@ -38,7 +53,7 @@ const updateCard = (carte) => {
     return upCard;
 }
 
-const cardId = (carteId) => {
+const getCardId = (carteId) => {
     let crt;
     cartes.forEach((carte) => {
         if (carte.carteId == carteId) {
@@ -47,4 +62,15 @@ const cardId = (carteId) => {
     });
     return crt;
 }
-module.exports = { add, getCards, delCard, updateCard, cardId, clearTable };
+
+const listCardId = (carteId, listId) => {
+    let crt;
+    const liste = getListById(listId);
+    liste.tableau.forEach((carte) => {
+        if (carte.carteId == carteId) {
+            crt = carte;
+        }
+    });
+    return crt;
+}
+module.exports = { add, addToList, getCards, delCard, updateCard, getCardId, listCardId, clearTable };
