@@ -6,7 +6,6 @@ const { clear } = require("winston");
 const { add, addToList, getCards, delCard, getCardId, listCardId, updateCard, clearTable } = require("../CRUD.js");
 const { addListe } = require("../CRUDLISt.js");
 
-
 describe("test CRUD", () => {
     beforeEach(() => {
         clearTable();

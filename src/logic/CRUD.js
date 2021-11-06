@@ -62,7 +62,6 @@ const getCardId = (carteId) => {
     });
     return crt;
 }
-
 const listCardId = (carteId, listId) => {
     let crt;
     const liste = getListById(listId);
@@ -74,3 +73,4 @@ const listCardId = (carteId, listId) => {
     return crt;
 }
 module.exports = { add, addToList, getCards, delCard, updateCard, getCardId, listCardId, clearTable };
+

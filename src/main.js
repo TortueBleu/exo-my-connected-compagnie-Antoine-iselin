@@ -36,7 +36,6 @@ app.patch('/cardsSwitch', function (req, res) {
   controllerSwitch(req, res)
 });
 
-
 //LISTE
 
 app.post('/list', function (req, res) {
