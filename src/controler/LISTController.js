@@ -1,4 +1,4 @@
-const { addListe, getListe, delList, majList, getListId, } = require('../logic/CRUDLISt')
+const { addListe, getListe, delList, majList, getListById, } = require('../logic/CRUDLISt')
 
 const controllerAddList = (req, res) => {
     const result = addListe(req.body);
@@ -15,7 +15,7 @@ const controllerDelList = (req, res) => {
 }
 const controllerListId = (req, res) => {
     let iD = req.query.id;
-    const result = getListId(iD);
+    const result = getListById(iD);
     res.json(result);
 }
 

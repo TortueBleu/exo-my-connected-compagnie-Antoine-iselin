@@ -1,6 +1,7 @@
 const { response } = require("express");
 const request = require("supertest");
 
+
 describe("test route", () => {
 
     var server;
@@ -20,44 +21,4 @@ describe("test route", () => {
             });
     });
 
-    // test("it should delete a card", () => {
-
-
-    //     return request(server)
-    //         .post("/cards")
-    //         .send({
-    //             "name": "story56",
-    //             "dateFin": "20/11/2021",
-    //             "description": "test"
-    //         })
-    //         .expect(200)
-    //         .then(() => {
-    //             request(server)
-    //                 .delete("/cardsDel?id=0")
-    //                 .then(response => {
-    //                     expect(response.body).toEqual({
-    //                         carteId: 0,
-    //                         name: "story56",
-    //                         dateFin: "20/11/2021",
-    //                         description: "test"
-    //                     });
-    //                 });
-    //         });
-    // });
-
-    test("it should add a card", () => {
-        return request(server)
-            .post("/cards")
-            .send({
-                "name": "story56",
-                "dateFin": "20/11/2021",
-                "description": "test"
-            })
-            .expect(200, {
-                carteId: 0,
-                name: "story56",
-                dateFin: "20/11/2021",
-                description: "test"
-            });
-    });
 });

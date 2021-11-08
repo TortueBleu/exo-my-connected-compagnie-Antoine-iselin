@@ -1,6 +1,11 @@
+//const { response } = require("express");
+//const { get } = require("superagent");
+//const { Card } = require("../../utils/cards.js");
 const { createTestScheduler } = require("@jest/core");
 const { clear } = require("winston");
-const { add, getCards, delCard, cardId, updateCard, clearTable } = require("../CRUD.js");
+const { add, addToList, getCards, delCard, getCardId, listCardId, updateCard, clearTable } = require("../CRUD.js");
+const { addListe } = require("../CRUDLISt.js");
+
 
 describe("test CRUD", () => {
     beforeEach(() => {
@@ -40,20 +45,44 @@ describe("test CRUD", () => {
             name: "story3",
             dateFin: "20/11/2021",
         };
-        let newCard = add(input);
+        const newCard = add(input);
         newCard.name = "clc";
         const MAJ = updateCard(newCard);
         expect(MAJ.name).toBe("clc");
     });
 
 
-    test("it should response a card with id ", () => {
+    test("it should response a card inside a list", () => {
+        const input = {
+            name: "story3",
+            dateFin: "20/11/2021",
+        };
+        const list = {
+            name: "toto",
+            tableau: []
+        }
+        const verif = addListe(list);
+        const newCardInsideList = addToList(input, verif.listId);
+        expect(verif.tableau).toContain(newCardInsideList);
+    });
+
+    test("it should add a card into an non-existing list", () => {
+        const card = {
+            name: "story3",
+            dateFin: "20/11/2021",
+        };
+        const newCardInsideList = addToList(card);
+        expect(newCardInsideList).toBeUndefined();
+    });
+
+
+    test("it should repsonse a card with id ", () => {
         const input = {
             name: "story3",
             dateFin: "20/11/2021",
         };
         const newCard = add(input);
-        const verif = cardId(newCard.carteId);
+        const verif = getCardId(newCard.carteId);
         expect(verif).toBe(newCard);
     });
 
@@ -73,5 +102,7 @@ describe("test CRUD", () => {
         const del = delCard(card.carteId);
         expect(del).toBe(card);
     });
+
+
 
 });
