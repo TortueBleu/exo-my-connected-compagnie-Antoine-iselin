@@ -7,8 +7,6 @@ const switchList = (carteId, listeId, oldId, req) => {
     const oldList = getListById(oldId);
     const card = getCardId(carteId);
     const list = getListById(listeId);
-
-
     //supprime carte de la liste
     const patchedCard = delCard(card.carteId);
     //console.log(patchedCard);

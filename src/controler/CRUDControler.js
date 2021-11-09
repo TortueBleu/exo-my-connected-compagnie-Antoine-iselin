@@ -3,7 +3,6 @@ const { addToList, delCard, updateCard, getCardId, getCards } = require('../logi
 const { getListById } = require('../logic/CRUDLISt.js');
 const { switchList } = require('../logic/changementDeListe.js');
 
-
 const controllerAdd = (req, res) => {
     const card = req.body;
     const listeId = req.query.listId
@@ -31,13 +30,13 @@ const controllerId = (req, res) => {
     res.json(result);
 }
 const controllerSwitch = (req, res) => {
-    let idCarte = req.query.idCarte;
-    let idListe = req.query.idList;
+    let Carte = req.query.idCarte;
+    let newListe = req.query.newList;
     let oldId = req.query.oldId;
-    const oldList = getListById(parseInt(oldId));
-    const card = getCardId(parseInt(idCarte));
-    const list = getListById(parseInt(idListe));
-    const result = switchList(idCarte, idListe, oldId, req)
+    const oldList = getListById(oldId.listId);
+    const newList = getListById(newListe.listId);
+    const card = getCardId(Carte.carteId);
+    const result = switchList(card.carteId, newList.listId, oldList.listId, req.body)
     res.json(result)
 }
 
