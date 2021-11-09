@@ -229,3 +229,16 @@ ____
   <br>
 
 </details>
+
+____
+
+<details>
+  <summary>Ressenti</summary>
+
+ Le test etait clait et a une bonne courbe de difficulté
+ <br>
+ Ce qui ma poser probleme a été les test unitaire que j'ai ajouter au projet afin de pouvoir tester rapidement mes fonction et ainsi perdre peu de temp 
+ <br>
+ J'ai egalemebt eu quelque probleme de git d'origine inconnue ce qui ma obliger a redemarer mon projet de 0
+
+  </details>
